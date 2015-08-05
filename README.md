@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # serpTracker
 =======
 # express-example
@@ -97,4 +96,3 @@ Once thats done, your database configuration is ready!
 ## The tests
 
 You can run the tests by executing `npm test`.
->>>>>>> master

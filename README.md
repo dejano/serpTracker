@@ -32,6 +32,8 @@ npm install --save sequelize@2.0.0-rc1 sequelize-cli sqlite3
 node_modules/.bin/sequelize init
 node_modules/.bin/sequelize model:create --name User --attributes username:string
 node_modules/.bin/sequelize model:create --name Task --attributes title:string
+
+node_modules/.bin/sequelize model:create --name Domain --attributes name:string
 ```
 
 You will now have a basic express application with some additional directories

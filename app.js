@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var router  = express.Router();
 var domains = require('./app/domains/config.route.js');
 //var routes = require('./routes/index');
 //var users  = require('./routes/users');
@@ -21,12 +20,6 @@ app.use(cookieParser());
 
 app.use('/api', domains);
 //app.use('/users', users);
-
-router.get('/domains1', function(req, res) {
-    res.json({ message: 'print all domains' });
-});
-
-app.use('/api', router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

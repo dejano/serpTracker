@@ -6,7 +6,10 @@ module.exports = function (sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function (models) {
-                Domain.belongsToMany(models.Keyword, {through: 'domain_has_keyword', as: { singular: 'Keyword', plural: 'Keywords' }})
+                Domain.belongsToMany(models.Keyword, {
+                    through: 'DomainHasKeyword',
+                    as: {singular: 'Keyword', plural: 'Keywords'}
+                })
             }
         }
     });

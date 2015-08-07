@@ -1,5 +1,6 @@
 'use strict';
 var model = require('../core/models');
+var domainTransformer = require('./domain.transformer');
 
 module.exports = domainController();
 
@@ -17,7 +18,8 @@ function domainController() {
 
     function getAllDomains(req, res, next) {
         model.Domain.findAll().then(function (domains) {
-            res.json({result: domains});
+
+            res.json({result: domainTransformer(domains).transform()});
         }).catch(function (err) {
             next(err);
         })
@@ -36,7 +38,7 @@ function domainController() {
                 next(err);
                 return;
             }
-            res.json({result: domain});
+            res.json({result: domainTransformer(domain).withKeywords().transform()});
         }).catch(function (err) {
             next(err);
         });

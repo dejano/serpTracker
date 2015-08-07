@@ -1,10 +1,10 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Keyword = sequelize.define('Keyword', {
         name: DataTypes.STRING
     }, {
         classMethods: {
-            associate: function(models) {
+            associate: function (models) {
                 // associations can be defined here
                 //Keyword.belongsTo(models.Domain, {
                 //    onDelete: "CASCADE",
@@ -12,7 +12,10 @@ module.exports = function(sequelize, DataTypes) {
                 //        allowNull: false
                 //    }
                 //});
-                Keyword.belongsToMany(models.Domain, {through: 'domain_has_keyword', as: { singular: 'Domain', plural: 'Domains' }})
+                Keyword.belongsToMany(models.Domain, {
+                    through: 'DomainHasKeyword',
+                    as: {singular: 'Domain', plural: 'Domains'}
+                })
             }
         }
     });

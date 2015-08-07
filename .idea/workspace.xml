@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ff3284c-5968-4fb0-87f4-68887a553924" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/domains/domain.keyword.model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/domains/domain.transformer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/keywords/keyword.transformer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/positions/position.model.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/domains/service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/keywords/config.route.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/keywords/service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/positions/service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/20150805075206-create-user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/20150805075440-create-test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/20150806054658-create-domain.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/error.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/domains/domain.controller.js" afterPath="$PROJECT_DIR$/app/domains/domain.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/domains/domain.model.js" afterPath="$PROJECT_DIR$/app/domains/domain.model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/keywords/keyword.model.js" afterPath="$PROJECT_DIR$/app/keywords/keyword.model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="serp-tracker.iws" />
@@ -70,11 +54,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="keyword.transformer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="keyword.transformer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/keywords/keyword.transformer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3842282">
+            <state vertical-scroll-proportion="0.0">
               <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.76760566">
+              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -130,16 +124,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="npm-debug.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/npm-debug.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -182,6 +166,7 @@
         <option value="$PROJECT_DIR$/app/domains/domain.controller.js" />
         <option value="$PROJECT_DIR$/app/domains/domain.transformer.js" />
         <option value="$PROJECT_DIR$/app/keywords/keyword.transformer.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -386,9 +371,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1914" height="1027" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3301179" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3301179" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -638,13 +623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -743,8 +721,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/keywords/keyword.transformer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3842282">
+        <state vertical-scroll-proportion="0.0">
           <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76760566">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
       </provider>

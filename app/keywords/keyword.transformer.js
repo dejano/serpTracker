@@ -25,6 +25,7 @@ function Transformer(keywords) {
 
     function process(keyword) {
         var transformed = {};
+        transformed.id = keyword.id;
         transformed.name = keyword.name;
         return transformed;
     }

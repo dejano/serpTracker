@@ -8,21 +8,30 @@ var domains = require('./app/domains/config.route.js');
 //var routes = require('./routes/index');
 //var users  = require('./routes/users');
 
+var SerpTracker = require('./app/core/serpService');
+
 var app = express();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', domains);
 //app.use('/users', users);
-
+app.use('/serp', function (req, res, next) {
+    var fn = function callback(result) {
+        res.writeHeader(200, {"Content-Type": "text/html"});
+        res.write(result);
+        res.end();
+    };
+    SerpTracker.checkSerp('hello lord', 'http://clashresources.com/', fn);
+});
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -30,7 +39,7 @@ app.use(function(req, res, next) {
 
 // error handler
 // no stacktraces leaked to user unless in development environment
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.json({
         message: err.message,

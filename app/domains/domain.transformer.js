@@ -32,6 +32,7 @@ function Transformer(domains) {
 
     function process(domain) {
         var transformed = {};
+        transformed.id = domain.id;
         transformed.name = domain.name;
         if (transformKeywords && domain.Keywords !== undefined) {
             transformed.keywords = [];

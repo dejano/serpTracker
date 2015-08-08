@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "client": "nw ./nw-client/",
     "test": "npm run test-unit && npm run test-integration",
     "test-unit": "mocha test/unit/*.test.js",
     "test-integration": "mocha test/integration/*.test.js"
@@ -16,6 +17,7 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
+    "nw": "^0.12.3",
     "requests": "^0.1.6",
     "sequelize": "^3.3.2",
     "sequelize-cli": "^1.7.1",

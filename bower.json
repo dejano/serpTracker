@@ -1,0 +1,22 @@
+{
+  "name": "nw-client",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dejano/serpTracker",
+  "authors": [
+    "dejano <dejanopocket@gmail.com>"
+  ],
+  "description": "Client for Serp-Tracker",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-material": "~0.10.0"
+  }
+}

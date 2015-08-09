@@ -24,8 +24,7 @@ app.use('/api', domains);
 //app.use('/users', users);
 app.use('/serp', function (req, res, next) {
     var fn = function callback(result) {
-        res.writeHeader(200, {"Content-Type": "text/html"});
-        res.write(result);
+        res.json(result);
         res.end();
     };
     SerpTracker.checkSerp('hello lord', 'http://clashresources.com/', fn);

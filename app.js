@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var domains = require('./app/domains/config.route.js');
+var domains = require('./app/core/config.route.js');
 //var routes = require('./routes/index');
 //var users  = require('./routes/users');
 
@@ -19,7 +19,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
+// Website you wish to allow to connect
+// Add headers
+app.use(function (req, res, next) {
 
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Pass to next layer of middleware
+    next();
+});
 app.use('/api', domains);
 //app.use('/users', users);
 app.use('/serp', function (req, res, next) {
@@ -27,7 +42,7 @@ app.use('/serp', function (req, res, next) {
         res.json(result);
         res.end();
     };
-    SerpTracker.checkSerp('hello lord', 'http://clashresources.com/', fn);
+    SerpTracker.checkSerp('clash of clans hack', 'ehacksandcheats.com', fn);
 });
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

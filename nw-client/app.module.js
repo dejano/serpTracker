@@ -1,10 +1,8 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('company', [
+angular.module('serpTracker', [
     'app.core',
-    'app.invoices',
-    'app.invoices.items',
-
+    'app.domains',
     'ui.bootstrap'
 ]);

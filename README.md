@@ -1,5 +1,4 @@
 # Serp Tracker
-=======
 
 To learn a little bit of NodeJS and nw.js and for fun I developed search engine ranking position tracker.
 

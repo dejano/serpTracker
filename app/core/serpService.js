@@ -1,39 +1,31 @@
+'use strict';
+
 var request = require('request');
 var cheerio = require('cheerio');
 var util = require('util');
 var sleep = require('sleep');
-request = request.defaults({jar: true})
-module.exports = new SerpTracker();
+request = request.defaults({jar: true});
 
-function SerpTracker() {
-    const domClass = '.r';
-    var keyword;
-    var domain;
-    var numberOfResults = 10;
-    var start = 0;
-    var searchUrl = 'https://www.google.com/search?ie=UTF-8&q=%s&oq=%s&hl=en&site=webhp&start=%d';
-    var callback;
-    var self = this;
+function SerpTracker(keyword, domain, callback, url) {
+    this.keyword = keyword;
+    this.domain = domain;
+    this.callback = callback;
+    this.url = url;
+    this._start = 0;
+    this.numberOfResults = 50;
+}
 
+SerpTracker.prototype = {
+    constructor: SerpTracker,
+    track: function () {
+        this._request();
+    },
+    _parseDom: function (html) {
 
-    var methods = {
-        checkSerp: init
-    };
-
-    return methods;
-    //////////////
-
-    function init(keyword, domain, callback) {
-        self.domain = normalizeDomain(domain);
-        self.keyword = keyword;
-        self.callback = callback;
-
-        httpGet(start);
-    }
-
-    function httpGet(start) {
+    },
+    _request: function () {
         var options = {
-            url: util.format(util.format(searchUrl,searchUrl, encodeURIComponent(self.keyword), start)),
+            url: util.format(this.url, this.numberOfResults, this._start),
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',
                 //'User-Agent': 'requests',
@@ -47,50 +39,94 @@ function SerpTracker() {
             }
         };
 
-        request(options, function (error, response, body) {
+        var self = this;
+        var requestCallback = function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                var result = parseDom(body);
-                if (!Object.keys(result).length) {
+
+                var result = self._parseDom(body);
+                console.log(result);
+
+                if (Object.keys(result).length) {
                     console.log('has property');
-                    console.log(result);
-                    self.callback(result);
+                    self.callback({result: result});
                 } else {
                     console.log('has no property');
-                    sleep.sleep(10);
-                    httpGet(start + numberOfResults);
+                    console.log(self._start + self.numberOfResults);
+                    if ((self._start + self.numberOfResults) >= 50) {
+                        result = {
+                            keyword: self.keyword,
+                            domain: self.domain,
+                            position: 0
+                        };
+                        self.callback({result: result});
+                        return;
+                    }
+                    sleep.sleep(5);
+
+                    self._start += self.numberOfResults;
+                    self._request();
                 }
             } else {
                 console.log('error ' + error);
                 console.log('error ' + response.statusCode);
                 if (body.indexOf('This page appears when Google automatically detects') > -1) {
-                    self.callback($.html());
+                    self.callback({result: {error: 'Requires captcha confirmation', code: response.statusCode}});
                 } else {
-                    self.callback(body);
+                    self.callback({result: {error: error, code: response.statusCode}});
                 }
             }
-        });
+        };
+
+        request(options, requestCallback);
     }
 
-    function parseDom(html) {
-        var result = {};
-        $ = cheerio.load(html);
-        $(domClass).map(function (i, foo) {
-            var url = $(foo).find('a').attr('href');
-            url = url.split('/url?q=')[1].split('&sa=U&ved=')[0];
+};
 
-            if (url === self.domain) {
-                result = {
-                    keyword: self.keyword,
-                    domain: self.domain,
-                    position: self.start + i
-                };
-                //return false;
-            }
-        });
-        return result;
-    }
-
-    function normalizeDomain(domain) {
-        return domain;
-    }
+//////
+function Google(keyword, domain, callback) {
+    var searchUrl = 'https://www.google.com/search?ie=UTF-8&q=%s&oq=%s&hl=en&site=webhp&num=%d&start=%d';
+    var url = util.format(searchUrl, encodeURIComponent(keyword), encodeURIComponent(keyword));
+    SerpTracker.call(this, keyword, domain, callback, url);
+    console.log(this.numberOfResults);
 }
+
+Google.prototype = Object.create(SerpTracker.prototype);
+Google.prototype.constructor = Google;
+Google.prototype._parseDom = function (html) {
+    var result = {};
+    var $ = cheerio.load(html);
+    var self = this; // this as second arg for map isn't working :S
+    $('.r').map(function (i, div) {
+        var url = $(div).find('a').attr('href');
+        if ((url.indexOf(self.domain) > -1)) {
+            result = {
+                keyword: self.keyword,
+                domain: self.domain,
+                position: self._start + i
+            };
+        }
+    });
+    return result;
+};
+
+////////
+function Bing(keyword, domain, callback) {
+    SerpTracker.call(this, keyword, domain, callback, '');
+}
+Bing.prototype = Object.create(SerpTracker.prototype);
+Bing.prototype.constructor = Bing;
+
+////////
+function Yahoo(keyword, domain, callback) {
+    SerpTracker.call(this, keyword, domain, callback, '');
+}
+Yahoo.prototype = Object.create(Yahoo.prototype);
+Yahoo.prototype.constructor = Yahoo;
+
+var trackers = {
+    Google: Google,
+    Bing: Bing,
+    Yahoo: Yahoo
+};
+
+module.exports = trackers;

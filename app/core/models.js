@@ -26,7 +26,7 @@ function getFiles(dir, files_) {
     return files_;
 }
 
-var models = getFiles(path.join(__dirname, '../..', 'app'));
+var models = getFiles(path.join(__dirname, '..', 'models'));
 models.forEach(function(modelFile) {
     var model = sequelize['import'](modelFile);
     db[model.name] = model;

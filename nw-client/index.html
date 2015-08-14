@@ -1,89 +1,86 @@
 <!DOCTYPE html>
 <!--[if lt IE 7]>
-<html lang="en" ng-app="company" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<html lang="en" ng-app="serpTracker" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>
-<html lang="en" ng-app="company" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<html lang="en" ng-app="serpTracker" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>
-<html lang="en" ng-app="company" class="no-js lt-ie9"> <![endif]-->
+<html lang="en" ng-app="serpTracker" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en" ng-app="company" class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title ng-bind="$root.title">Welcome</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<html lang="en" ng-app="serpTracker" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="$root.title">Welcome</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-chart.js/dist/angular-chart.css" />
 
-        <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="app/assets/css/main.css">
+    <link rel="stylesheet" href="app/assets/css/font-awesome.css">
+</head>
+<body>
+<toaster-container></toaster-container>
+<div ng-include="'app/layout/layout.html'"></div>
 
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="app/assets/js/jQuery.plugins.js"></script>
+<script src="app/assets/js/scripts.js"></script>
 
-        <link rel="stylesheet" href="assets/css/main.css">
-        <link rel="stylesheet" href="assets/css/font-awesome.css">
-    </head>
-    <body>
-        <toaster-container></toaster-container>
-        <div ng-include="'layout/layout.html'"></div>
-
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="assets/js/jQuery.plugins.js"></script>
-
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="bower_components/angular-toastr/dist/angular-toastr.min.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/ngstorage/ngStorage.min.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="assets/js/xml2json.js"></script>
-        <script src="assets/js/scripts.js"></script>
-
-        <script src="blocks/route/router.module.js"></script>
-        <script src="blocks/route/routeHelper.provider.js"></script>
-        <script src="blocks/route/routeHelper.factory.js"></script>
-
-
-        <script src="blocks/auth/auth.module.js"></script>
-        <script src="blocks/auth/auth.config.js"></script>
-        <script src="blocks/auth/allow.directive.js"></script>
-        <script src="blocks/auth/auth.provider.js"></script>
-        <script src="blocks/auth/authInterceptor.service.js"></script>
-        <script src="blocks/auth/auth.controller.js"></script>
-        <script src="blocks/auth/config.route.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="https://code.angularjs.org/1.4.3/angular-resource.js"></script>
+<script src="bower_components/Chart.js/Chart.min.js"></script>
+<script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="app/assets/js/xml2json.js"></script>
 
 
-        <script src="blocks/filter/filter.module.js"></script>
-        <script src="blocks/filter/double.filter.js"></script>
-        <script src="blocks/filter/date.filter.js"></script>
+<script src="app/blocks/route/router.module.js"></script>
+<script src="app/blocks/route/routeHelper.provider.js"></script>
+<script src="app/blocks/route/routeHelper.factory.js"></script>
 
 
-        <script src="layout/layout.module.js"></script>
-        <script src="layout/layout.controller.js"></script>
+<script src="app/blocks/auth/auth.module.js"></script>
+<script src="app/blocks/auth/auth.config.js"></script>
+<script src="app/blocks/auth/allow.directive.js"></script>
+<script src="app/blocks/auth/auth.provider.js"></script>
+<script src="app/blocks/auth/authInterceptor.service.js"></script>
+<script src="app/blocks/auth/auth.controller.js"></script>
+<script src="app/blocks/auth/config.route.js"></script>
 
-        <script src="core/core.module.js"></script>
-        <script src="core/core.run.js"></script>
-        <script src="core/core.config.js"></script>
-        <script src="core/data.service.js"></script>
+
+<script src="app/blocks/filter/filter.module.js"></script>
+<script src="app/blocks/filter/double.filter.js"></script>
+<script src="app/blocks/filter/date.filter.js"></script>
 
 
-        <script src="app.module.js"></script>
+<script src="app/layout/layout.module.js"></script>
+<script src="app/layout/layout.controller.js"></script>
 
-        <script src="invoices/invoices.module.js"></script>
-        <script src="invoices/invoices.controller.js"></script>
-        <script src="invoices/invoice.controller.js"></script>
-        <script src="invoices/update.modal.controller.js"></script>
-        <script src="invoices/createinvoice.controller.js"></script>
-        <script src="invoices/config.route.js"></script>
+<script src="app/core/core.module.js"></script>
+<script src="app/core/core.run.js"></script>
+<script src="app/core/core.config.js"></script>
+<script src="app/core/data.service.js"></script>
 
-        <script src="items/items.module.js"></script>
-        <script src="items/config.route.js"></script>
-        <script src="items/delete.modal.controller.js"></script>
-        <script src="items/create.modal.controller.js"></script>
-        <script src="items/update.modal.controller.js"></script>
-        <script src="items/items.controller.js"></script>
 
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    </body>
+<script src="app.module.js"></script>
+
+<script src="app/domains/domains.module.js"></script>
+<script src="app/domains/config.route.js"></script>
+<script src="app/domains/domains.controller.js"></script>
+<script src="app/domains/domain.controller.js"></script>
+<script src="app/domains/create.controller.js"></script>
+
+<!--<script src="app/bower_components/angular-bootstrap/dist/js/bootstrap.min.js"></script>-->
+</body>
 </html>

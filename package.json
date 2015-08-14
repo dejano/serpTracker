@@ -3,21 +3,21 @@
   "description": "Track SERP for your website on google.com.",
   "version": "0.0.1",
   "private": true,
-  "main": "nw-client/frameless_window.html",
+  "main": "nw-client/index.html",
   "scripts": {
     "start": "node ./bin/www",
-    "client": "nw",
+    "start:client": "http-server -a localhost -p 8000 -c-1",
     "test": "npm run test-unit && npm run test-integration",
     "test-unit": "mocha test/unit/*.test.js",
     "test-integration": "mocha test/integration/*.test.js"
   },
   "window": {
-    "show": false,
+    "show": true,
     "toolbar": false,
-    "frame": false,
+    "frame": true,
     "position": "center",
-    "width": 360,
-    "height": 300,
+    "width": 800,
+    "height": 600,
     "min_width": 220,
     "min_height": 220
   },

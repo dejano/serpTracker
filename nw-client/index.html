@@ -19,7 +19,13 @@
     <link rel="stylesheet" type="text/css" href="bower_components/angular-chart.js/dist/angular-chart.css" />
 
     <link rel="stylesheet" href="app/assets/css/main.css">
-    <link rel="stylesheet" href="app/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="titlebar.js"></script>
+    <script src="frameless_window.js"></script>
+
 </head>
 <body>
 <toaster-container></toaster-container>
@@ -32,16 +38,16 @@
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="https://code.angularjs.org/1.4.3/angular-resource.js"></script>
 <script src="bower_components/Chart.js/Chart.min.js"></script>
 <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
-<script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/angular-moment/angular-moment.js"></script>
 <script src="app/assets/js/xml2json.js"></script>
 
 
@@ -58,6 +64,8 @@
 <script src="app/blocks/auth/auth.controller.js"></script>
 <script src="app/blocks/auth/config.route.js"></script>
 
+<script src="app/blocks/directives/directive.module.js"></script>
+<script src="app/blocks/directives/loading.directive.js"></script>
 
 <script src="app/blocks/filter/filter.module.js"></script>
 <script src="app/blocks/filter/double.filter.js"></script>
@@ -77,6 +85,9 @@
 
 <script src="app/domains/domains.module.js"></script>
 <script src="app/domains/config.route.js"></script>
+<script src="app/domains/keywordAction.directive.js"></script>
+<script src="app/domains/showChart.directive.js"></script>
+<script src="app/domains/rankArrow.directive.js"></script>
 <script src="app/domains/domains.controller.js"></script>
 <script src="app/domains/domain.controller.js"></script>
 <script src="app/domains/create.controller.js"></script>

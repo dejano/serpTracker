@@ -22,50 +22,15 @@
         <td>{{domain.id}}</td>
         <td>{{domain.name}}</td>
         <td>{{domain.description}}</td>
-        <td><a href="#/domains/{{domain.id}}">
-            <button class="btn btn-primary">Details</button>
-        </a></td>
+        <td>
+            <a href="#/domains/{{domain.id}}">
+                <button class="btn btn-primary">Details</button>
+            </a>
+            <button class="btn btn-danger" ng-click="deleteDomain(domain)">Delete</button>
+        </td>
     </tr>
     </tbody>
 </table>
 
 <div class="row">
-    <!--<form>-->
-    <!--<div class="form-group col-lg-1 col-sm-2">-->
-    <!--<div class="input-group">-->
-    <!--<select class="btn btn-default dropdown-toggle" type="button" ng-model="compareOperatorPrice"-->
-    <!--ng-options="item.value for item in dropdownPrice"></select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group col-lg-3 col-sm-10">-->
-    <!--<div class="input-group">-->
-    <!--<div class="input-group-addon"><i class="fa fa-search"></i></div>-->
-    <!--<input type="text" class="form-control" placeholder="Search da Price" ng-model="filterPrice">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group col-lg-1 col-sm-2">-->
-    <!--<div class="input-group">-->
-    <!--<select class="btn btn-default dropdown-toggle" type="button" ng-model="compareOperatorBillingDate"-->
-    <!--ng-options="item.value for item in dropdownDate"></select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group  col-lg-3 col-sm-10">-->
-    <!--<div class="input-group">-->
-    <!--<div class="input-group-addon"><i class="fa fa-search"></i></div>-->
-    <!--<input type="text" class="form-control" placeholder="Search da Billing Date" ng-model="filterBilling">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group col-lg-1 col-sm-2">-->
-    <!--<div class="input-group">-->
-    <!--<select class="btn btn-default dropdown-toggle" type="button" ng-model="compareOperatorCurrencyDate"-->
-    <!--ng-options="item.value for item in dropdownDate"></select>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group col-lg-3 col-sm-10">-->
-    <!--<div class="input-group ">-->
-    <!--<div class="input-group-addon"><i class="fa fa-search"></i></div>-->
-    <!--<input type="text" class="form-control" placeholder="Search da Date Currency" ng-model="filterCurrency">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
 </div>

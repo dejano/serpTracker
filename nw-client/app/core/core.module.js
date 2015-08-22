@@ -4,10 +4,13 @@
     angular.module('app.core', [
         'ngRoute',
         'ngAnimate',
+        'toastr',
         'ngResource',
         'app.layout',
         'blocks.filter',
-        'blocks.router', 'blocks.auth'
+        'blocks.directive',
+        'blocks.router',
+        'blocks.auth'
     ]);
 
 })();

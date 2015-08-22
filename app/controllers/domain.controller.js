@@ -34,6 +34,12 @@ function domainController() {
 
     function createDomain(req, res, next) {
         // create domain
+        console.log(req.body);
+        if (!req.body.name || !req.body.keywords.length) {
+            var error = new Error('Invalid data');
+            next(error);
+            return;
+        }
         model.Domain.create({name: req.body.name})
             .then(function (domain) {
                 // create keywords
@@ -50,17 +56,19 @@ function domainController() {
                                 next(err);
                             });
                         }
-                    }).catch(function (err) {
-                        next(err);
-                    });
+                    })
+                        .catch(function (err) {
+                            next(err);
+                        });
                 });
-            }).catch(function (err) {
+            })
+            .catch(function (err) {
                 next(err);
             });
     }
 
     function deleteDomain(req, res, next) {
-        model.Domain.destroy({where: {id: req.params.id}}, function (success) {
+        model.Domain.destroy({where: {id: req.params.id}}).then(function (success) {
             console.log(success);
             if (success != 0) {
                 res.json({result: {success: true}});

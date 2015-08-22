@@ -2,13 +2,9 @@
     'use strict';
 
     angular.module('app.domains', [
-        'ngRoute',
-        'ngAnimate',
-        'app.layout',
+        'app.core',
         'chart.js',
-        'angularMoment',
-        'blocks.filter',
-        'blocks.router'
+        'angularMoment'
     ]);
 
 })();

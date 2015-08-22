@@ -4,54 +4,23 @@
     angular.module('app.domains')
         .controller('domainsController', domainsController)
 
-    domainsController.$inject = ['$scope', 'domains', 'dataService', '$log', '$modal', '$route', 'toastr', '$location'];
-    function domainsController($scope, domains, dataService, $log, $modal, $route, toastr, $location) {
+    domainsController.$inject = ['$scope', 'domains', 'dataService', 'toastr'];
+    function domainsController($scope, domains, dataService, toastr) {
         $scope.domains = domains.result;
-        $scope.approve = approve;
-        $scope.reject = reject;
-
-        // update domain modal
-        $scope.openUpdateModal = openUpdateModal;
-
+        $scope.deleteDomain = deleteDomain;
         ///////////////
 
-        function successCallback(title, message) {
-            toastr.success(message, title);
-            $location.path("/");
-        }
-
-        function reject() {
-            dataService.Invoice.reject($scope.domain._id).success(successCallback('Invoice successfully rejected'))
-        }
-
-        function approve() {
-            dataService.Invoice.approve($scope.domain).success(function () {
-                toastr.success('', 'Invoice successfully approved');
-                $location.path("/");
-            });
-        }
-
-        function openUpdateModal(invoice) {
-            var invoiceToEdit = angular.copy(domain);
-            var modalInstance = $modal.open({
-                animation: true,
-                templateUrl: 'invoices/update-domain.html',
-                controller: 'updateInvoiceModalController',
-                resolve: {
-                    invoice: function () {
-                        return invoiceToEdit;
-                    }
+        function deleteDomain(toDelete) {
+            return dataService.domains.delete({id: toDelete.id}).$promise.then(function (data) {
+                console.log(data);
+                if (data.result.success) {
+                    $scope.domains.forEach(function (domain) {
+                        if (domain.id === toDelete.id) {
+                            $scope.domains.splice( $scope.domains.indexOf(toDelete), 1 );
+                        }
+                    });
                 }
-            });
-
-            modalInstance.result.then(function (invoice) {
-                dataService.Invoice.update(domain).success(function (data) {
-                    console.log(data);
-                    console.log($scope.domain);
-                    $route.reload();
-                });
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
+                toastr.info('Successfully delete domain.', 'Deleted');
             });
         }
     }

@@ -4,7 +4,7 @@
     angular.module('app.core').run(appRun);
 
     appRun.$inject = ['$rootScope', '$templateCache'];
-    function appRun($rootScope, $templateCache) {
+    function appRun($rootScope) {
         $rootScope.setupData = {
             "name": "YoLo Company",
             "address": "1",
@@ -16,9 +16,9 @@
                 "3"
             ]
         };
-        $rootScope.$on('$viewContentLoaded', function () {
-            $templateCache.removeAll();
-        });
+        //$rootScope.$on('$viewContentLoaded', function () {
+        //    $templateCache.removeAll();
+        //});
     }
 
 })();

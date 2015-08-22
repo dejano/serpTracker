@@ -98,12 +98,14 @@ Google.prototype._parseDom = function (html) {
     var self = this; // this as second arg for map isn't working :S
     $('.r').map(function (i, div) {
         var url = $(div).find('a').attr('href');
-        if ((url.indexOf(self.domain) > -1)) {
+        if ((url.indexOf(self.domain) > -1) && !result.position) {
             result = {
                 keyword: self.keyword,
                 domain: self.domain,
                 position: self._start + i
             };
+            console.log('FOUND');
+            console.log(result);
         }
     });
     return result;

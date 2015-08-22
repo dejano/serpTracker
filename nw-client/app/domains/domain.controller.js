@@ -1,91 +1,140 @@
 (function () {
+    var moment = require('moment');
     'use strict';
 
     angular.module('app.domains')
-        .controller('domainController', domainController)
+        .controller('domainController', domainController);
 
-    domainController.$inject = ['$scope', 'domain', 'dataService', '$log', '$modal', '$route', 'toastr', '$location', 'moment'];
-    function domainController($scope, domain, dataService, $log, $modal, $route, toastr, $location, moment) {
-        console.log(domain);
+    domainController.$inject = ['$scope', 'domain', 'dataService', '$log', '$window', '$route', 'toastr', '$location'];
+    function domainController($scope, domain, dataService, $log, $window, $route, toastr, $location) {
         $scope.domain = domain.result;
-        $scope.approve = approve;
-
-        $scope.reject = reject;
         $scope.showChart = showChart;
+        $scope.updateRank = updateRank;
+        $scope.deleteKeyword = deleteKeyword;
 
-        // update domain modal
-        $scope.openUpdateModal = openUpdateModal;
-
-        $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        $scope.series = ['Series A'];
-        $scope.data = [
-            [65, 59, 80, 81, 56, 55, 40]
-            //[28, 48, 40, 19, 86, 27, 90]
-        ];
-        $scope.onClick = function (points, evt) {
-            console.log(points, evt);
-        };
-
+        activate();
         ///////////////
-        function showChart(keywordId) {
-            dataService.keywords.get({
-                keywordId: keywordId,
-                domainId: $route.current.params.id
-            }).$promise.then(function (data) {
-                    var history = data.result;
-                    console.log(history);
-                    var dates = [];
-                    var ranks = [];
-                    history.keyword.history.forEach(function (data) {
-                        dates.push(moment(new Date(data.lastUpdate)).fromNow());
-                        ranks.push(data.position);
-                    });
-                    $scope.labels = dates;
-                    $scope.data = [ranks];
-                    $scope.series = [history.keyword.name];
-                })
 
+        function activate() {
+            $scope.labels = [];
+            $scope.series = [];
+            $scope.data = [];
+            $scope.chartIds = [];
+            $scope.greenArrow = '<i class="fa fa-plus label-spaced-icon icon-small"></i>';
+            calculate();
+            displayCharts();
         }
 
-        function successCallback(title, message) {
-            toastr.success(message, title);
-            $location.path("/");
+        function displayCharts() {
+            var len = $scope.domain.keywords.length;
+            for (var i = 0; i < len; i++) {
+                showChart(i);
+            }
         }
 
-        function reject() {
-            dataService.Invoice.reject($scope.domain._id).success(successCallback('Invoice successfully rejected'))
-        }
-
-        function approve() {
-            dataService.Invoice.approve($scope.domain).success(function () {
-                toastr.success('', 'Invoice successfully approved');
-                $location.path("/");
-            });
-        }
-
-        function openUpdateModal(invoice) {
-            var invoiceToEdit = angular.copy(domain);
-            var modalInstance = $modal.open({
-                animation: true,
-                templateUrl: 'invoices/update-domain.html',
-                controller: 'updateInvoiceModalController',
-                resolve: {
-                    invoice: function () {
-                        return invoiceToEdit;
-                    }
+        function calculate() {
+            var today = moment();
+            $scope.domain.keywords.forEach(function (keyword) {
+                if (keyword.history.length == 1) {
+                    keyword.day = '-';
+                    keyword.week = '-';
+                    keyword.month = '-';
+                    keyword.lifetime = '-';
+                    return false;
                 }
-            });
 
-            modalInstance.result.then(function (invoice) {
-                dataService.Invoice.update(domain).success(function (data) {
-                    console.log(data);
-                    console.log($scope.domain);
+                keyword.day = keyword.history[keyword.history.length - 2].position - keyword.position;
+                keyword.lifetime = keyword.history[0].position - keyword.position;
+
+                if (keyword.history.length >= 8) {
+                    keyword.week = keyword.history[keyword.history.length - 8].position - keyword.position;
+                } else {
+                    keyword.week = keyword.lifetime;
+                }
+
+                if (keyword.history.length >= 31) {
+                    keyword.month = keyword.history[keyword.history.length - 31].position - keyword.position;
+                } else {
+                    keyword.month = keyword.lifetime;
+                }
+
+            });
+        }
+
+        function deleteKeyword(toDelete) {
+            return dataService.keywords.delete({domainId: $route.current.params.id,keywordId: toDelete.id}).$promise.then(function (data) {
+                console.log(data);
+                if (data.result.success) {
+                    $scope.domain.keywords.forEach(function (keyword) {
+                        if (keyword.id === toDelete.id) {
+                            $scope.domain.keywords.splice( $scope.domain.keywords.indexOf(toDelete), 1 );
+                        }
+                    });
+                }
+                toastr.info('Successfully delete domain.', 'Deleted');
+            });
+        }
+
+        function updateRank() {
+            console.log('update rank');
+            var lastUpdate = moment(new Date($scope.domain.keywords[0].lastUpdate)).diff(new Date(), 'hours');
+            if (lastUpdate > -24) {
+                toastr.error('Update every 24 hours. ' + Math.abs(lastUpdate) + ' hours passed since last update.', 'Update restriction!');
+                return;
+            }
+
+            dataService.keywords.save(null, {domainId: $scope.domain.id}).$promise.then(function (res) {
+                dataService.domains.get({id: $route.current.params.id}).$promise.then(function (data) {
+                    $scope.domain = data.result;
+                    console.log(data.result);
                     $route.reload();
                 });
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
+                //$window.location.reload();
+            }, function (err) {
+                console.log(err);
+                toastr.error('Something went wrong. ' + '\n' + err.message, 'Ops!');
             });
         }
+
+        function showChart(index, action) {
+
+            var keyword = $scope.domain.keywords[index];
+            var toRemove = $scope.series.indexOf(keyword.name);
+            console.log($scope.series);
+            if (toRemove > -1) {
+                //$scope.labels = [];
+                //$scope.series = [];
+                //$scope.data = [];
+                var ind = 0;
+                $scope.series.map(function(chart, i) {
+                    if (chart == keyword.name) {
+                        ind = i;
+                    }
+                });
+                console.log(ind);
+                $scope.series.splice(ind, 1);
+                $scope.data.splice(ind, 1);
+                console.log($scope.series);
+
+                return;
+            }
+
+            var dates = [];
+            var ranks = [];
+            var dataId;
+            var seriesId;
+            keyword.history.forEach(function (data) {
+                dates.push(moment(new Date(data.lastUpdate)).fromNow());
+                ranks.push(data.position);
+            });
+            if (!$scope.labels.length) {
+                $scope.labels = dates;
+            }
+            dataId = $scope.data.push(ranks);
+            seriesId = $scope.series.push(keyword.name);
+            $scope.chartIds.push({keyword: keyword.name, dataId: dataId-1, seriesId: seriesId-1});
+        }
+
     }
 
 })();

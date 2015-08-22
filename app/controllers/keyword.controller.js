@@ -8,7 +8,8 @@ function keywordController() {
     var methods = {
         rank: rank,
         rankAll: rankAll,
-        history: history
+        history: history,
+        delete: deleteKeyword
     };
 
     return methods;
@@ -88,10 +89,15 @@ function keywordController() {
 
             function callback(data) {
                 //console.log(data);
+                if (data.result.error) {
+                    var error = new Error(data.result.error);
+                    next(error);
+                    return;
+                }
                 var id = 0;
                 for (var i = 0; i < len; i++) {
                     if (domain.Keywords[i].name === data.result.keyword) {
-                        id = domain.Keywords[i].id;
+                        id = domain.Keywords[i].DomainHasKeyword.id;
                         break;
                     }
                 }
@@ -101,7 +107,7 @@ function keywordController() {
                 }).then(function (rankRecord) {
                     result.push(rankRecord.get());
                     if (result.length === len) {
-                        res.write(JSON.stringify(result));
+                        res.write(JSON.stringify({result:result}));
                         res.end();
                     }
                 });
@@ -109,5 +115,18 @@ function keywordController() {
         }).catch(function (err) {
             next(err);
         });
+    }
+
+    function deleteKeyword(req, res, next) {
+        model.Keyword.destroy({where: {id: req.params.keywordId}}).then(function (success) {
+            if (success != 0) {
+                res.json({result: {success: true}});
+            } else {
+                res.json({result: {success: false}});
+            }
+            res.end();
+        }).catch(function (err) {
+            next(err);
+        })
     }
 }

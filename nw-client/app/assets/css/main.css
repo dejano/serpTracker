@@ -1,5 +1,5 @@
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
 *,
 *:before,
 *:after {
@@ -7,19 +7,23 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 body {
     background: #f5f5f5;
     padding: 0;
     margin: 0;
     font-family: 'Lato', sans-serif;
 }
+
 i.fa {
     font-size: 16px;
 }
+
 p {
     font-size: 16px;
     line-height: 1.428571429;
 }
+
 .header {
     position: fixed;
     z-index: 10;
@@ -31,10 +35,12 @@ p {
     line-height: 50px;
     color: #fff;
 }
+
 .header .logo {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .header #menu-action {
     display: block;
     float: left;
@@ -52,10 +58,12 @@ p {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .header #menu-action i {
     display: inline-block;
     margin: 0 5px;
 }
+
 .header #menu-action span {
     width: 0px;
     display: none;
@@ -63,20 +71,24 @@ p {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .header #menu-action:hover {
     background: rgba(0, 0, 0, 0.25);
 }
+
 .header #menu-action.active {
     width: 250px;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .header #menu-action.active span {
     display: inline;
     width: auto;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .sidebar {
     position: fixed;
     z-index: 10;
@@ -90,6 +102,7 @@ p {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .sidebar:hover,
 .sidebar.active,
 .sidebar.hovered {
@@ -97,14 +110,17 @@ p {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
+
 .sidebar ul li {
     display: block;
 }
+
 .sidebar ul li a {
     display: block;
     position: relative;
@@ -114,6 +130,7 @@ p {
     color: #444;
     text-align: left;
 }
+
 .sidebar ul li a i {
     display: inline-block;
     width: 60px;
@@ -129,20 +146,24 @@ p {
     -o-animation-fill-mode: both;
     animation-fill-mode: both;
 }
+
 .sidebar ul li a span {
     display: inline-block;
     height: 60px;
     line-height: 60px;
 }
+
 .sidebar ul li a:hover {
     background-color: #eee;
 }
+
 .sidebar ul li a:hover i {
     -webkit-animation-name: swing;
     -moz-animation-name: swing;
     -o-animation-name: swing;
     animation-name: swing;
 }
+
 .main {
     position: relative;
     display: block;
@@ -153,11 +174,13 @@ p {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .main.active {
     padding-left: 275px;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+
 .main .jumbotron {
     background-color: #fff;
     padding: 30px !important;
@@ -166,12 +189,14 @@ p {
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+
 .main .jumbotron h1 {
     font-size: 24px;
     margin: 0;
     padding: 0;
     margin-bottom: 12px;
 }
+
 @-webkit-keyframes swing {
     20% {
         -webkit-transform: rotate3d(0, 0, 1, 15deg);
@@ -194,6 +219,7 @@ p {
         transform: rotate3d(0, 0, 1, 0deg);
     }
 }
+
 @keyframes swing {
     20% {
         -webkit-transform: rotate3d(0, 0, 1, 15deg);
@@ -221,6 +247,7 @@ p {
         transform: rotate3d(0, 0, 1, 0deg);
     }
 }
+
 .swing {
     -webkit-transform-origin: top center;
     -ms-transform-origin: top center;
@@ -228,7 +255,6 @@ p {
     -webkit-animation-name: swing;
     animation-name: swing;
 }
-
 
 /***
  *
@@ -430,4 +456,104 @@ p {
     border-top: 1px solid #888;
     padding-top: 15px;
     font-size: 85%
+}
+
+.label-spaced {
+    margin-right: 5px;
+    margin-bottom: 5px !important;
+    display: inline-block;
+    /*background-color: #3498DB !important;*/
+    cursor: pointer;
+}
+
+.label-spaced-icon {
+    color: #82CC82;
+    margin-left: 2px;
+}
+
+.label-spaced-red-icon {
+    color: rgba(204, 33, 47, 0.61);
+    margin-left: 2px;
+}
+
+.icon-small {
+    font-size: 12px !important;
+}
+
+.add-keyword {
+
+}
+
+.remove-keyword {
+    background-color: #d9534f !important;
+}
+
+.loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.48);
+    display: none;
+    animation-delay: 1000ms;
+}
+
+#loading {
+    height: 40px;
+    position: absolute;
+    left: calc(50% - 40px);
+    top: calc(50% - 10px);
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#loading span {
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+    background: #868686;
+    border-radius: 10px;
+    display: inline-block;
+    transition: all 400ms ease;
+    animation: wave 2.5s ease infinite;
+}
+
+#loading span:nth-child(2) {
+    animation-delay: 100ms;
+}
+
+#loading span:nth-child(3) {
+    animation-delay: 200ms;
+}
+
+#loading span:nth-child(4) {
+    animation-delay: 300ms;
+}
+
+#loading span:nth-child(5) {
+    animation-delay: 400ms;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translate(0, 0);
+        background: #286090;
+    }
+    40% {
+        transform: translate(0, 20px);
+        opacity: 0;
+    }
+    10% {
+        transform: translate(0, -20px);
+        background: #3498DB;
+    }
 }

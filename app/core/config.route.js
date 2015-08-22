@@ -18,4 +18,5 @@ router
 router.route('/domains/:domainId/keywords/:keywordId')
     .post(keywordController.rank)
     .get(keywordController.history);
-router.post('/domains/:id/keywords/', keywordController.rankAll);
+router.post('/domains/:id/keywords/', keywordController.rankAll)
+    .delete('/domains/:domainId/keywords/:keywordId', keywordController.delete);

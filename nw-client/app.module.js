@@ -4,5 +4,6 @@
 angular.module('serpTracker', [
     'app.core',
     'app.domains',
+
     'ui.bootstrap'
 ]);
